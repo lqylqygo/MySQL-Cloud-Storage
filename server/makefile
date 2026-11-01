@@ -1,6 +1,6 @@
 # 目标：生成最终的可执行文件 servertestconf
-servertestconf: config.o main.o hashtable.o master.o worker.o tcpinit.o
-	gcc config.o main.o hashtable.o master.o worker.o tcpinit.o -o servertestconf -g -Wall -lpthread
+servertestconf: config.o main.o hashtable.o master.o worker.o tcpinit.o cmd_handle.o threadpool.o
+	gcc config.o main.o hashtable.o master.o worker.o tcpinit.o cmd_handle.o threadpool.o -o servertestconf -g -Wall -lpthread
 
 
 # config.o 依赖于 config.c 和 config.h
@@ -21,6 +21,10 @@ worker.o: worker.c worker.h master.h
 	gcc -c worker.c -o worker.o -g -Wall
 tcpinit.o: tcpinit.c tcpinit.h
 	gcc -c tcpinit.c -o tcpinit.o -g -Wall
+cmd_handle.o: cmd_handle.c cmd_handle.h
+	gcc -c cmd_handle.c -o cmd_handle.o -g -Wall
+threadpool.o: threadpool.c threadpool.h
+	gcc -c threadpool.c -o threadpool.o -g -Wall
 # 伪目标，用于清理编译生成的文件
 clean:
 	rm -f *.o servertestconf

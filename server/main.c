@@ -9,11 +9,14 @@ int main(){
     char *ip=(char *)find(&ht,IP);
     char *port_str=(char *)find(&ht,PORT);
     char *worknum_str=(char *)find(&ht,WORKER_NUM);
+    char *threadnum_str=(char *)find(&ht,THREAD_NUM);
     printf("ip=%s\n",ip);//打印
     printf("port=%s\n",port_str);
     printf("worknum=%s\n",worknum_str);
+    printf("threadnum=%s\n",threadnum_str);
     int port=atoi(port_str);
     int worknum=atoi(worknum_str);
+    int threadnum=atoi(threadnum_str);
     int listenfd=tcp_init(ip,port);
     int workers_fd[worknum];//存放master端的socketpair的fd
     for(int i=0;i<worknum;i++)
@@ -32,7 +35,7 @@ int main(){
             close(sv[0]);
             //子进程
             close(listenfd);
-            workerLoop(sv[1]);
+            workerLoop(sv[1],threadnum);
         }
         else
         {

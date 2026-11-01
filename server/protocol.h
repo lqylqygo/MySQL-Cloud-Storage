@@ -4,7 +4,7 @@ typedef struct train_s{
     int len;
     int type;
     char buff[4096];
-}train_t;
+}train_t;//TLV协议火车头
 
 typedef enum{
     CMD_TYPE_PWD = 1,
