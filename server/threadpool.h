@@ -2,7 +2,7 @@
 #define MY__THREADPOOL_H__
 #include <my_header.h>
 #include"protocol.h"
-#include"cmd_handle.h"
+
 typedef struct task_s {
     int peerfd;          // 客户端 socket
     int epfd;            // Worker 进程的 epoll 句柄（为了 PUTS 结束后重新注册）

@@ -1,5 +1,6 @@
 #ifndef __MY_PROTOCOL_H__
 #define __MY_PROTOCOL_H__
+#include<my_header.h>
 typedef struct train_s{
     int len;
     int type;
@@ -34,5 +35,6 @@ typedef enum{
 } CmdType;
 
 
-
+int recvn(int sockfd, void *buff, int len);//解决粘包问题
+int sendn(int sockfd, const void *buff, int len);//解决半包问题
 #endif

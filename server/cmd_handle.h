@@ -3,6 +3,7 @@
 #include <my_header.h>
 #include"threadpool.h"
 #include"protocol.h"
+#include "worker.h"
 void doTask(task_t *ptask);
 void pwdCommand(task_t *task);
 void putsCommand(task_t *task);

@@ -44,22 +44,7 @@ task_t *queuePop(Queue *q) {
     pthread_mutex_unlock(&q->lock);
     return ptask;
 }
-void queueDestroy(Queue *q)
-{
-  pthread_mutex_lock(&q->lock);
-    printf("--- 当前任务队列 (Size: %d) ---\n", q->size);
-    
-    task_t *cur = q->head;
-    int index = 0;
-    while (cur != NULL) {
-        // 假设 task_t 里有 peerfd 和 type 字段
-        printf("  [%d] connfd: %d, cmd_type: %d\n", index++, cur->peerfd, cur->type);
-        cur = cur->pnext;
-    }
-    printf("--------------------------------\n");
-    
-    pthread_mutex_unlock(&q->lock);
-}
+
 task_t* queueFront(Queue *q) {
     pthread_mutex_lock(&q->lock);
     task_t *ptask = q->head; // 只是读取指针，没有改变链表结构
